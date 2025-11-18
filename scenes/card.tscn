@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5ep06g4bcfpi"]
+
+[ext_resource type="Script" path="res://scenes/card.gd" id="1_nqna1"]
+
+[node name="Card" type="PanelContainer"]
+custom_minimum_size = Vector2(320, 240)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_nqna1")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TitleBar" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 32)
+
+[node name="TitleLabel" type="Label" parent="VBox/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Oracle"
+
+[node name="RollButton" type="Button" parent="VBox/TitleBar"]
+layout_mode = 2
+text = "Roll"
+
+[node name="BodyLabel" type="RichTextLabel" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+fit_content_height = true
+
+[node name="RollResult" type="Label" parent="VBox"]
+layout_mode = 2
+text = ""
+
+[node name="NotesEdit" type="TextEdit" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+placeholder_text = "Add fiction, notes, or results here"
+autowrap_mode = 1
+
+[connection signal="pressed" from="VBox/TitleBar/RollButton" to="." method="_on_roll_button_pressed"]
+

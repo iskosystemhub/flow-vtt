@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://cqow47bch5ocs"]
+[gd_scene load_steps=3 format=3 uid="uid://cqow47bch5ocs"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_5ni7c"]
+[ext_resource type="PackedScene" path="res://scenes/card.tscn" id="2_8o61r"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -7,20 +10,99 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5ni7c")
+card_scene = ExtResource("2_8o61r")
 
 [node name="Root Layout" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="TopBar" type="HBoxContainer" parent="Root Layout"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_minimum_size = Vector2(0, 40)
+
+[node name="ReloadRulesButton" type="Button" parent="Root Layout/TopBar"]
+layout_mode = 2
+text = "Reload Rules"
+
+[node name="SaveBoardButton" type="Button" parent="Root Layout/TopBar"]
+layout_mode = 2
+text = "Save Board"
+
+[node name="LoadBoardButton" type="Button" parent="Root Layout/TopBar"]
+layout_mode = 2
+text = "Load Board"
+
+[node name="StatusLabel" type="Label" parent="Root Layout/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ready"
 
 [node name="MainArea" type="HBoxContainer" parent="Root Layout"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Sidebar" type="Panel" parent="Root Layout/MainArea"]
 layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+custom_minimum_size = Vector2(260, 0)
+
+[node name="SidebarMargin" type="MarginContainer" parent="Root Layout/MainArea/Sidebar"]
+layout_mode = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+
+[node name="SidebarVBox" type="VBoxContainer" parent="Root Layout/MainArea/Sidebar/SidebarMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SidebarHeader" type="Label" parent="Root Layout/MainArea/Sidebar/SidebarMargin/SidebarVBox"]
+layout_mode = 2
+text = "Rules"
+
+[node name="RuleTree" type="Tree" parent="Root Layout/MainArea/Sidebar/SidebarMargin/SidebarVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+hide_root = true
 
 [node name="Board" type="Panel" parent="Root Layout/MainArea"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BoardMargin" type="MarginContainer" parent="Root Layout/MainArea/Board"]
+layout_mode = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+
+[node name="BoardArea" type="Control" parent="Root Layout/MainArea/Board/BoardMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="CardLayer" type="Control" parent="Root Layout/MainArea/Board/BoardMargin/BoardArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
